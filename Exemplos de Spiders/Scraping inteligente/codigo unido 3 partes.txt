@@ -1,0 +1,139 @@
+import scrapy
+from scrapy.crawler import CrawlerProcess
+from bs4 import BeautifulSoup
+import tensorflow as tf
+import sqlite3
+
+# Parte 1: Criar o Modelo de Inteligência Artificial para Classificação e Armazenamento de Dados
+
+class InteligenciaArtificial:
+    def __init__(self):
+        # Carregar o modelo de classificação da Parte 1, que será usado para classificar os dados coletados
+        try:
+            self.modelo_classificacao = tf.keras.models.load_model('my_model.h5')
+        except FileNotFoundError:
+            print("Erro: O modelo de classificação não foi encontrado. Certifique-se de que o arquivo my_model.h5 esteja presente.")
+            exit()
+
+    def obter_tarefas_para_spiders(self):
+        # Método para obter as tarefas para os spiders
+        # Por exemplo, solicitar ao usuário um tema de pesquisa e os sites a serem varridos
+        try:
+            tema_pesquisa = input("Digite o tema de interesse para pesquisa: ")
+            sites_pesquisa = input("Digite os sites para varrer (separados por vírgula): ").split(',')
+            if not sites_pesquisa:
+                raise ValueError("Erro: Nenhum site foi fornecido.")
+        except Exception as e:
+            print(f"Erro: {e}")
+            exit()
+
+        return tema_pesquisa, sites_pesquisa
+
+    def executar_spiders(self, tema_pesquisa, sites_pesquisa):
+        # Método para executar os spiders com base nas tarefas fornecidas
+        # Configurar os links iniciais para os spiders com base nos sites fornecidos
+        MeuSpider.start_urls = sites_pesquisa
+
+        # Definir um dicionário para armazenar os resultados dos spiders
+        resultados_spiders = {}
+
+        # Função de callback para processar os resultados dos spiders
+        def processar_resultados(resultado, spider):
+            resultados_spiders[spider.name] = resultado
+
+            # Verificar se todos os spiders terminaram suas varreduras
+            if len(resultados_spiders) == len(sites_pesquisa):
+                # Caso todos os spiders tenham terminado, prosseguir para a classificação dos dados coletados
+                self.classificar_dados_coletados()
+
+        # Executar o spider usando o CrawlerProcess com a função de callback
+        process = CrawlerProcess()
+        for site in sites_pesquisa:
+            process.crawl(MeuSpider, tema_pesquisa=tema_pesquisa, callback=processar_resultados)
+        process.start()
+
+    def classificar_dados_coletados(self):
+        # Método para classificar os dados coletados pelos spiders usando o modelo de classificação da Parte 1
+        # Conectar ao banco de dados onde os dados coletados foram armazenados
+        try:
+            conexao = sqlite3.connect('dados_classificados.db')
+            cursor = conexao.cursor()
+
+            # Selecionar os dados coletados
+            cursor.execute('SELECT id, frase, fonte, data_coleta FROM dados_coletados WHERE relevante IS NULL')
+            dados_coletados = cursor.fetchall()
+            if not dados_coletados:
+                raise ValueError("Erro: Nenhum dado coletado encontrado no banco de dados para classificação.")
+
+            # Classificar os dados coletados usando o modelo de classificação da Parte 1
+            for dado in dados_coletados:
+                id_dado, frase, fonte, data_coleta = dado
+                # Use o modelo de classificação da Parte 1 para prever a relevância da frase
+                previsao = self.modelo_classificacao.predict([frase])[0]
+                probabilidade = previsao[0]  # Probabilidade de ser relevante
+                relevante = int(probabilidade >= 0.5)  # Definir um limite para considerar relevante ou não
+
+                # Atualizar a classificação na tabela do banco de dados
+                cursor.execute('UPDATE dados_coletados SET relevante = ?, probabilidade = ? WHERE id = ?', (relevante, probabilidade, id_dado))
+
+            # Commit para salvar as mudanças no banco de dados
+            conexao.commit()
+
+            # Fechar a conexão com o banco de dados
+            conexao.close()
+        except Exception as e:
+            print(f"Erro: {e}")
+            exit()
+
+    def imprimir_resultados_classificacao(self):
+        # Método para imprimir os resultados da classificação dos dados coletados
+        try:
+            conexao = sqlite3.connect('dados_classificados.db')
+            cursor = conexao.cursor()
+
+            # Selecionar os dados classificados
+            cursor.execute('SELECT frase, relevante, fonte, data_coleta, probabilidade FROM dados_coletados')
+            dados_classificados = cursor.fetchall()
+            if not dados_classificados:
+                raise ValueError("Erro: Nenhum dado classificado encontrado no banco de dados.")
+
+            # Imprimir os resultados da classificação
+            print("\nResultados da Classificação:")
+            for dado in dados_classificados:
+                frase, relevante, fonte, data_coleta, probabilidade = dado
+                relevancia = "Relevante" if relevante == 1 else "Não Relevante"
+                print(f"- {frase}: {relevancia} | Fonte: {fonte} | Data de Coleta: {data_coleta} | Probabilidade: {probabilidade:.2f}")
+
+            # Fechar a conexão com o banco de dados
+            conexao.close()
+        except Exception as e:
+            print(f"Erro: {e}")
+            exit()
+
+# Parte 2: Implementar um Spider com Funções de Web Scraping
+
+class MeuSpider(scrapy.Spider):
+    name = 'myspider'
+    tema_pesquisa = None
+
+    def parse(self, response):
+        soup = BeautifulSoup(response.text, 'html.parser')
+        data = soup.find_all('div', class_='mydata')
+        for item in data:
+            text = item.get_text()
+            self.salvar_dado(text)
+
+    def salvar_dado(self, dado):
+        conexao = sqlite3.connect('dados_classificados.db')
+        cursor = conexao.cursor()
+        cursor.execute('INSERT INTO dados_coletados (frase, fonte, data_coleta) VALUES (?, ?, ?)', (dado, self.name, '30/07/2023'))
+        conexao.commit()
+        conexao.close()
+
+# Executar a Inteligência Artificial de Controle e Classificação
+if __name__ == '__main__':
+    ia = InteligenciaArtificial()
+    tema_pesquisa, sites_pesquisa = ia.obter_tarefas_para_spiders()
+    ia.executar_spiders(tema_pesquisa, sites_pesquisa)
+    ia.classificar_dados_coletados()
+    ia.imprimir_resultados_classificacao()

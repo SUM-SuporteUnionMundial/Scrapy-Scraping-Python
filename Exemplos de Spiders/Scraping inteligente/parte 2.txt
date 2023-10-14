@@ -1,0 +1,34 @@
+import scrapy
+
+class MeuSpider(scrapy.Spider):
+    name = 'meuspider'  # Nome do spider
+    start_urls = ['http://example.com/news']  # URL inicial para começar o scraping
+
+    def parse(self, response):
+        # Extrair os títulos das notícias usando seletores CSS
+        titulos = response.css('h2.title::text').extract()
+
+        # Armazenar temporariamente os títulos em uma lista
+        for titulo in titulos:
+            self.titulos_temporarios.append(titulo)
+
+        # Verificar se há próxima página e seguir o link para coletar mais dados
+        next_page = response.css('a.next-page::attr(href)').get()
+        if next_page:
+            yield response.follow(next_page, self.parse)
+
+    def __init__(self, *args, **kwargs):
+        super(MeuSpider, self).__init__(*args, **kwargs)
+        self.titulos_temporarios = []  # Inicializa uma lista vazia para armazenar temporariamente os títulos
+
+# Executar o spider
+from scrapy.crawler import CrawlerProcess
+
+process = CrawlerProcess()
+process.crawl(MeuSpider)
+process.start()
+
+# Imprimir os títulos coletados temporariamente
+print("Títulos coletados:")
+for titulo in MeuSpider.titulos_temporarios:
+    print(titulo)

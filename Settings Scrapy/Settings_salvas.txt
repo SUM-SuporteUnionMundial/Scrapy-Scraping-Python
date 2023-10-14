@@ -1,0 +1,159 @@
+Configuração: ADDONS, Valor: <scrapy.settings.BaseSettings object at 0x0000027407760690>
+Configuração: AJAXCRAWL_ENABLED, Valor: False
+Configuração: ASYNCIO_EVENT_LOOP, Valor: None
+Configuração: AUTOTHROTTLE_DEBUG, Valor: False
+Configuração: AUTOTHROTTLE_ENABLED, Valor: False
+Configuração: AUTOTHROTTLE_MAX_DELAY, Valor: 60.0
+Configuração: AUTOTHROTTLE_START_DELAY, Valor: 5.0
+Configuração: AUTOTHROTTLE_TARGET_CONCURRENCY, Valor: 1.0
+Configuração: BOT_NAME, Valor: scrapybot
+Configuração: CLOSESPIDER_ERRORCOUNT, Valor: 0
+Configuração: CLOSESPIDER_ITEMCOUNT, Valor: 0
+Configuração: CLOSESPIDER_PAGECOUNT, Valor: 0
+Configuração: CLOSESPIDER_TIMEOUT, Valor: 0
+Configuração: COMMANDS_MODULE, Valor: 
+Configuração: COMPRESSION_ENABLED, Valor: True
+Configuração: CONCURRENT_ITEMS, Valor: 100
+Configuração: CONCURRENT_REQUESTS, Valor: 16
+Configuração: CONCURRENT_REQUESTS_PER_DOMAIN, Valor: 8
+Configuração: CONCURRENT_REQUESTS_PER_IP, Valor: 0
+Configuração: COOKIES_DEBUG, Valor: False
+Configuração: COOKIES_ENABLED, Valor: True
+Configuração: DEFAULT_ITEM_CLASS, Valor: scrapy.item.Item
+Configuração: DEFAULT_REQUEST_HEADERS, Valor: <scrapy.settings.BaseSettings object at 0x0000027407760410>
+Configuração: DEPTH_LIMIT, Valor: 0
+Configuração: DEPTH_PRIORITY, Valor: 0
+Configuração: DEPTH_STATS_VERBOSE, Valor: False
+Configuração: DNSCACHE_ENABLED, Valor: True
+Configuração: DNSCACHE_SIZE, Valor: 10000
+Configuração: DNS_RESOLVER, Valor: scrapy.resolver.CachingThreadedResolver
+Configuração: DNS_TIMEOUT, Valor: 60
+Configuração: DOWNLOADER, Valor: scrapy.core.downloader.Downloader
+Configuração: DOWNLOADER_CLIENTCONTEXTFACTORY, Valor: scrapy.core.downloader.contextfactory.ScrapyClientContextFactory
+Configuração: DOWNLOADER_CLIENT_TLS_CIPHERS, Valor: DEFAULT
+Configuração: DOWNLOADER_CLIENT_TLS_METHOD, Valor: TLS
+Configuração: DOWNLOADER_CLIENT_TLS_VERBOSE_LOGGING, Valor: False
+Configuração: DOWNLOADER_HTTPCLIENTFACTORY, Valor: scrapy.core.downloader.webclient.ScrapyHTTPClientFactory
+Configuração: DOWNLOADER_MIDDLEWARES, Valor: <scrapy.settings.BaseSettings object at 0x0000027407760790>
+Configuração: DOWNLOADER_MIDDLEWARES_BASE, Valor: <scrapy.settings.BaseSettings object at 0x0000027407760A90>
+Configuração: DOWNLOADER_STATS, Valor: True
+Configuração: DOWNLOAD_DELAY, Valor: 0
+Configuração: DOWNLOAD_FAIL_ON_DATALOSS, Valor: True
+Configuração: DOWNLOAD_HANDLERS, Valor: <scrapy.settings.BaseSettings object at 0x0000027407761210>
+Configuração: DOWNLOAD_HANDLERS_BASE, Valor: <scrapy.settings.BaseSettings object at 0x0000027407761290>
+Configuração: DOWNLOAD_MAXSIZE, Valor: 1073741824
+Configuração: DOWNLOAD_TIMEOUT, Valor: 180
+Configuração: DOWNLOAD_WARNSIZE, Valor: 33554432
+Configuração: DUPEFILTER_CLASS, Valor: scrapy.dupefilters.RFPDupeFilter
+Configuração: EDITOR, Valor: %s -m idlelib.idle
+Configuração: EXTENSIONS, Valor: <scrapy.settings.BaseSettings object at 0x0000027407761690>
+Configuração: EXTENSIONS_BASE, Valor: <scrapy.settings.BaseSettings object at 0x00000274077617D0>
+Configuração: FEEDS, Valor: <scrapy.settings.BaseSettings object at 0x0000027407762010>
+Configuração: FEED_EXPORTERS, Valor: <scrapy.settings.BaseSettings object at 0x0000027407762150>
+Configuração: FEED_EXPORTERS_BASE, Valor: <scrapy.settings.BaseSettings object at 0x0000027407761CD0>
+Configuração: FEED_EXPORT_BATCH_ITEM_COUNT, Valor: 0
+Configuração: FEED_EXPORT_ENCODING, Valor: None
+Configuração: FEED_EXPORT_FIELDS, Valor: None
+Configuração: FEED_EXPORT_INDENT, Valor: 0
+Configuração: FEED_STORAGES, Valor: <scrapy.settings.BaseSettings object at 0x00000274077616D0>
+Configuração: FEED_STORAGES_BASE, Valor: <scrapy.settings.BaseSettings object at 0x0000027407762750>
+Configuração: FEED_STORAGE_FTP_ACTIVE, Valor: False
+Configuração: FEED_STORAGE_GCS_ACL, Valor: 
+Configuração: FEED_STORAGE_S3_ACL, Valor: 
+Configuração: FEED_STORE_EMPTY, Valor: True
+Configuração: FEED_TEMPDIR, Valor: None
+Configuração: FEED_URI_PARAMS, Valor: None
+Configuração: FILES_STORE_GCS_ACL, Valor: 
+Configuração: FILES_STORE_S3_ACL, Valor: private
+Configuração: FTP_PASSIVE_MODE, Valor: True
+Configuração: FTP_PASSWORD, Valor: guest
+Configuração: FTP_USER, Valor: anonymous
+Configuração: GCS_PROJECT_ID, Valor: None
+Configuração: HTTPCACHE_ALWAYS_STORE, Valor: False
+Configuração: HTTPCACHE_DBM_MODULE, Valor: dbm
+Configuração: HTTPCACHE_DIR, Valor: httpcache
+Configuração: HTTPCACHE_ENABLED, Valor: False
+Configuração: HTTPCACHE_EXPIRATION_SECS, Valor: 0
+Configuração: HTTPCACHE_GZIP, Valor: False
+Configuração: HTTPCACHE_IGNORE_HTTP_CODES, Valor: []
+Configuração: HTTPCACHE_IGNORE_MISSING, Valor: False
+Configuração: HTTPCACHE_IGNORE_RESPONSE_CACHE_CONTROLS, Valor: []
+Configuração: HTTPCACHE_IGNORE_SCHEMES, Valor: ['file']
+Configuração: HTTPCACHE_POLICY, Valor: scrapy.extensions.httpcache.DummyPolicy
+Configuração: HTTPCACHE_STORAGE, Valor: scrapy.extensions.httpcache.FilesystemCacheStorage
+Configuração: HTTPPROXY_AUTH_ENCODING, Valor: latin-1
+Configuração: HTTPPROXY_ENABLED, Valor: True
+Configuração: IMAGES_STORE_GCS_ACL, Valor: 
+Configuração: IMAGES_STORE_S3_ACL, Valor: private
+Configuração: ITEM_PIPELINES, Valor: <scrapy.settings.BaseSettings object at 0x0000027407763950>
+Configuração: ITEM_PIPELINES_BASE, Valor: <scrapy.settings.BaseSettings object at 0x0000027407763690>
+Configuração: ITEM_PROCESSOR, Valor: scrapy.pipelines.ItemPipelineManager
+Configuração: LOGSTATS_INTERVAL, Valor: 60.0
+Configuração: LOG_DATEFORMAT, Valor: %Y-%m-%d %H:%M:%S
+Configuração: LOG_ENABLED, Valor: True
+Configuração: LOG_ENCODING, Valor: utf-8
+Configuração: LOG_FILE, Valor: None
+Configuração: LOG_FILE_APPEND, Valor: True
+Configuração: LOG_FORMAT, Valor: %(asctime)s [%(name)s] %(levelname)s: %(message)s
+Configuração: LOG_FORMATTER, Valor: scrapy.logformatter.LogFormatter
+Configuração: LOG_LEVEL, Valor: DEBUG
+Configuração: LOG_SHORT_NAMES, Valor: False
+Configuração: LOG_STDOUT, Valor: False
+Configuração: MAIL_FROM, Valor: scrapy@localhost
+Configuração: MAIL_HOST, Valor: localhost
+Configuração: MAIL_PASS, Valor: None
+Configuração: MAIL_PORT, Valor: 25
+Configuração: MAIL_USER, Valor: None
+Configuração: MEMDEBUG_ENABLED, Valor: False
+Configuração: MEMDEBUG_NOTIFY, Valor: []
+Configuração: MEMUSAGE_CHECK_INTERVAL_SECONDS, Valor: 60.0
+Configuração: MEMUSAGE_ENABLED, Valor: True
+Configuração: MEMUSAGE_LIMIT_MB, Valor: 0
+Configuração: MEMUSAGE_NOTIFY_MAIL, Valor: []
+Configuração: MEMUSAGE_WARNING_MB, Valor: 0
+Configuração: METAREFRESH_ENABLED, Valor: True
+Configuração: METAREFRESH_IGNORE_TAGS, Valor: []
+Configuração: METAREFRESH_MAXDELAY, Valor: 100
+Configuração: NEWSPIDER_MODULE, Valor: 
+Configuração: RANDOMIZE_DOWNLOAD_DELAY, Valor: True
+Configuração: REACTOR_THREADPOOL_MAXSIZE, Valor: 10
+Configuração: REDIRECT_ENABLED, Valor: True
+Configuração: REDIRECT_MAX_TIMES, Valor: 20
+Configuração: REDIRECT_PRIORITY_ADJUST, Valor: 2
+Configuração: REFERER_ENABLED, Valor: True
+Configuração: REFERRER_POLICY, Valor: scrapy.spidermiddlewares.referer.DefaultReferrerPolicy
+Configuração: REQUEST_FINGERPRINTER_CLASS, Valor: scrapy.utils.request.RequestFingerprinter
+Configuração: REQUEST_FINGERPRINTER_IMPLEMENTATION, Valor: 2.7
+Configuração: RETRY_ENABLED, Valor: True
+Configuração: RETRY_EXCEPTIONS, Valor: ['twisted.internet.defer.TimeoutError', 'twisted.internet.error.TimeoutError', 'twisted.internet.error.DNSLookupError', 'twisted.internet.error.ConnectionRefusedError', 'twisted.internet.error.ConnectionDone', 'twisted.internet.error.ConnectError', 'twisted.internet.error.ConnectionLost', 'twisted.internet.error.TCPTimedOutError', 'twisted.web.client.ResponseFailed', <class 'OSError'>, 'scrapy.core.downloader.handlers.http11.TunnelError']
+Configuração: RETRY_HTTP_CODES, Valor: [500, 502, 503, 504, 522, 524, 408, 429]
+Configuração: RETRY_PRIORITY_ADJUST, Valor: -1
+Configuração: RETRY_TIMES, Valor: 2
+Configuração: ROBOTSTXT_OBEY, Valor: False
+Configuração: ROBOTSTXT_PARSER, Valor: scrapy.robotstxt.ProtegoRobotParser
+Configuração: ROBOTSTXT_USER_AGENT, Valor: None
+Configuração: SCHEDULER, Valor: scrapy.core.scheduler.Scheduler
+Configuração: SCHEDULER_DEBUG, Valor: False
+Configuração: SCHEDULER_DISK_QUEUE, Valor: scrapy.squeues.PickleLifoDiskQueue
+Configuração: SCHEDULER_MEMORY_QUEUE, Valor: scrapy.squeues.LifoMemoryQueue
+Configuração: SCHEDULER_PRIORITY_QUEUE, Valor: scrapy.pqueues.ScrapyPriorityQueue
+Configuração: SCRAPER_SLOT_MAX_ACTIVE_SIZE, Valor: 5000000
+Configuração: SPIDER_CONTRACTS, Valor: <scrapy.settings.BaseSettings object at 0x0000027407763450>
+Configuração: SPIDER_CONTRACTS_BASE, Valor: <scrapy.settings.BaseSettings object at 0x0000027407761710>
+Configuração: SPIDER_LOADER_CLASS, Valor: scrapy.spiderloader.SpiderLoader
+Configuração: SPIDER_LOADER_WARN_ONLY, Valor: False
+Configuração: SPIDER_MIDDLEWARES, Valor: <scrapy.settings.BaseSettings object at 0x000002740775E4D0>
+Configuração: SPIDER_MIDDLEWARES_BASE, Valor: <scrapy.settings.BaseSettings object at 0x000002740775E510>
+Configuração: SPIDER_MODULES, Valor: []
+Configuração: STATSMAILER_RCPTS, Valor: []
+Configuração: STATS_CLASS, Valor: scrapy.statscollectors.MemoryStatsCollector
+Configuração: STATS_DUMP, Valor: True
+Configuração: TELNETCONSOLE_ENABLED, Valor: 1
+Configuração: TELNETCONSOLE_HOST, Valor: 127.0.0.1
+Configuração: TELNETCONSOLE_PASSWORD, Valor: None
+Configuração: TELNETCONSOLE_PORT, Valor: [6023, 6073]
+Configuração: TELNETCONSOLE_USERNAME, Valor: scrapy
+Configuração: TEMPLATES_DIR, Valor: C:\Users\Player\AppData\Local\Programs\Python\Python311\Lib\site-packages\scrapy\templates
+Configuração: TWISTED_REACTOR, Valor: None
+Configuração: URLLENGTH_LIMIT, Valor: 2083
+Configuração: USER_AGENT, Valor: Scrapy/2.10.0 (+https://scrapy.org)

@@ -1,0 +1,88 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+import sqlite3
+
+# Dados de exemplo
+dados = {
+    'frase': [
+        'Python é uma linguagem de programação popular para inteligência artificial.',
+        'A inteligência artificial é uma área empolgante para se explorar.',
+        'A IA está revolucionando o mundo da tecnologia.',
+        'Com Python, é possível criar algoritmos de aprendizado de máquina.',
+        'Os dados são fundamentais para o treinamento dos modelos de IA.',
+        'O aprendizado de máquina é uma das principais áreas da IA.',
+        'Inteligência artificial e Python caminham juntos no desenvolvimento de soluções inovadoras.',
+        'Este é um texto aleatório sem relação com inteligência artificial.'
+    ],
+    'relevante': [1, 1, 1, 1, 1, 1, 1, 0]
+}
+
+# Criando DataFrame com os dados
+df = pd.DataFrame(dados)
+
+# Dividindo os dados em treino e teste
+X_train, X_test, y_train, y_test = train_test_split(df['frase'], df['relevante'], test_size=0.2, random_state=42)
+
+# Criando o vetorizador de palavras
+vectorizer = CountVectorizer()
+
+# Transformando as frases em vetores numéricos
+X_train_vect = vectorizer.fit_transform(X_train)
+X_test_vect = vectorizer.transform(X_test)
+
+# Criando e treinando o modelo Naive Bayes para classificação
+model = MultinomialNB()
+model.fit(X_train_vect, y_train)
+
+# Avaliando o desempenho do modelo de classificação
+accuracy = model.score(X_test_vect, y_test)
+print("Acurácia do modelo:", accuracy)
+
+# Armazenar os dados classificados em um banco de dados SQLite
+conexao = sqlite3.connect('dados_classificados.db')
+cursor = conexao.cursor()
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS dados_classificados (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        frase TEXT NOT NULL,
+        relevante INTEGER NOT NULL,
+        fonte TEXT
+    )
+''')
+
+novas_frases = [
+    'Aprenda a programar em Python para IA.',
+    'A inteligência artificial é o futuro da tecnologia.',
+    'Receitas de bolo em Python para IA.',
+    'O melhor curso de IA em Python.',
+    'O clima está frio hoje.',
+]
+
+novas_frases_vect = vectorizer.transform(novas_frases)
+previsoes = model.predict(novas_frases_vect)
+
+for frase, previsao in zip(novas_frases, previsoes):
+    if previsao == 1:
+        relevante = True
+    else:
+        relevante = False
+
+    # Inserir os dados classificados na tabela do banco de dados
+    cursor.execute('INSERT INTO dados_classificados (frase, relevante, fonte) VALUES (?, ?, ?)',
+                   (frase, int(relevante), 'Web Scraping e Classificação'))
+
+# Commit para salvar as mudanças no banco de dados
+conexao.commit()
+
+# Recuperar e imprimir os dados classificados armazenados no banco de dados
+cursor.execute('SELECT * FROM dados_classificados')
+
+print("Dados classificados armazenados no banco de dados:")
+for row in cursor.fetchall():
+    id, frase, relevante, fonte = row
+    print(f"ID: {id}, Frase: {frase}, Relevante: {bool(relevante)}, Fonte: {fonte}")
+
+# Fechar a conexão com o banco de dados
+conexao.close()
